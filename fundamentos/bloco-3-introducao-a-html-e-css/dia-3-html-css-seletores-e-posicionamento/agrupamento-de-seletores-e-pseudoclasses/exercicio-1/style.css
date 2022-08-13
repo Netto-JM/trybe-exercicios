@@ -1,0 +1,15 @@
+h1, p {
+  text-align: center;
+}
+
+.favorite-sites, .motives {
+  list-style: none;
+}
+
+ol.favorite-sites:hover, ul.motives:hover {
+  background-color: aliceblue;
+}
+
+li:active {
+  color: blueviolet;
+}
