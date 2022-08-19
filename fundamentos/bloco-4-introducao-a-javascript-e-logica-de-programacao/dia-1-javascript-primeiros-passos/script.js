@@ -45,8 +45,8 @@ function isPositiveNumber(num) {
 function isTriangle(a, b, c) {
   let error = '';
   function evaluateAngles(acc, curr, i, arr) {
-    error = !isNumber(num) ? 'Por favor digite um número válido'
-    : !isPositive(num) ? 'Por favor digite um número positivo' : '';
+    error = !isNumber(curr) ? 'Por favor digite um número válido'
+    : !isPositive(curr) ? 'Por favor digite um número positivo' : '';
     error && arr.splice(1) // encerra mais cedo
     return acc + curr;
   }
@@ -68,6 +68,7 @@ function calcProfit(cost, saleValue) {
     return 'Valor inválido ou negativo';
   }
   const totalCost = cost + cost * 0.2;
-  profit = saleValue - totalCost;
-  return profit;
+  const result = saleValue - totalCost;
+  const word = (result < 0) ? 'loss' : 'profit'; 
+  return `You have a ${word} of ${result}`;
 }
