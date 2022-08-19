@@ -22,3 +22,11 @@ if (average > 20) {
 console.log(max);
 console.log(min);
 console.log(oddAmount);
+
+const array = []
+for (let index = 1; index <= 25; index++) {
+  array.push(index);
+  console.log(index/2);
+}
+
+console.log(array);
