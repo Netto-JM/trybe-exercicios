@@ -46,3 +46,7 @@ function isTriangle(a, b, c) {
 function anyOdd(a, b, c) {
   return [a, b, c].some(num => num % 2 === 1);
 }
+
+function anyEven(a, b, c) {
+  return [a, b, c].some(num => num % 2 === 0);
+}
