@@ -42,3 +42,7 @@ function isTriangle(a, b, c) {
   const result = sumAngles === 180 ? true : false;
   return error || result;
 }
+
+function anyOdd(a, b, c) {
+  return [a, b, c].some(num => num % 2 === 1);
+}
