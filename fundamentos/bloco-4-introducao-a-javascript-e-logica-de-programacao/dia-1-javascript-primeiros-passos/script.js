@@ -18,6 +18,10 @@ function modulo(a, b) {
   return a % b;
 }
 
-function max(a, b) {
+function maxDeDois(a, b) {
   return a > b ? a : b;
+}
+
+function maxDeTres(a, b, c) {
+  return a > b && a > c ? a : b > c ? b : c;
 }
