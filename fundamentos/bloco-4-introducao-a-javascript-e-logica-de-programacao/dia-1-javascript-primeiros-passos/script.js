@@ -25,3 +25,7 @@ function maxDeDois(a, b) {
 function maxDeTres(a, b, c) {
   return a > b && a > c ? a : b > c ? b : c;
 }
+
+function isTrue(bool) {
+  return bool === true ? "positive" : bool === false ? "negative" : "zero";
+}
