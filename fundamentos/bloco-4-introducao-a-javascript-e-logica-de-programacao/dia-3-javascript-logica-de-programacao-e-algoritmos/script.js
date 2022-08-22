@@ -27,3 +27,29 @@ function reverseWordVerboseWay(word) {
 }
 
 console.log(reverseWordVerboseWay('abacaxi'));
+
+let array = ['java', 'javascript', 'python', 'html', 'css'];
+
+function findBiggestWord(wordsList) {
+  let biggestWord = '';
+  for (let index = 0; index < wordsList.length; index++) {
+    if (wordsList[index].length > biggestWord.length) {
+      biggestWord = wordsList[index]
+    }
+  }
+  return biggestWord;
+}
+
+function findSmallestWord(wordsList) {
+  let smallestWord = wordsList[0];
+  for (let index = 0; index < wordsList.length; index++) {
+    if (wordsList[index].length < smallestWord.length) {
+      smallestWord = wordsList[index]
+    }
+  }
+  return smallestWord;
+}
+
+console.log(findBiggestWord(array));
+
+console.log(findSmallestWord(array));
