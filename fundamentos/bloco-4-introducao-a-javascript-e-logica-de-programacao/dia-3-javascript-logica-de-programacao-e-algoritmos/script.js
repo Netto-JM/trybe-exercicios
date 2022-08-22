@@ -75,7 +75,7 @@ function theBiggestPrime(number) {
   if (!isNumber(number)) return 'Por favor, digite um número válido';
   if (number < 2) return 'Por favor, digite um número maior ou igual a 2';
   let biggestPrime = 2;
-  for (let index = 2; index <= number; index++) {
+  for (let index = 3; index <= number; index++) {
     biggestPrime = isPrime(index) ? index : biggestPrime;
   }
   return biggestPrime;
