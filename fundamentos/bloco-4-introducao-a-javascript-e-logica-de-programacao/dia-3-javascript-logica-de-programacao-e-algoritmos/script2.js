@@ -11,8 +11,16 @@ function drawRectangle(number) {
 drawRectangle(5)
 
 function drawTriangleRectangleLeft(number) {
-  //code here
+  for (let i = 0; i < number; i++) {
+    let row = ''
+    for (let j = number; j >= number - i; j--) {
+      row += '*'
+    }
+    console.log(row);
+  }
 }
+
+drawTriangleRectangleLeft(5)
 
 function drawTriangleRectangleRight(number) {
   //code here
