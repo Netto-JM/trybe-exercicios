@@ -11,12 +11,11 @@ function factorial(number) {
 
 console.log(factorial(10));
 
+
 function reverseWordPracticalWay(word) {
   const reversedWord = word.split('').reverse().join('');
   return reversedWord;
 }
-
-console.log(reverseWordPracticalWay('banana'));
 
 function reverseWordVerboseWay(word) {
   let reversedWord = ''
@@ -26,9 +25,10 @@ function reverseWordVerboseWay(word) {
   return reversedWord;
 }
 
+console.log(reverseWordPracticalWay('banana'));
+
 console.log(reverseWordVerboseWay('abacaxi'));
 
-let array = ['java', 'javascript', 'python', 'html', 'css'];
 
 function findBiggestWord(wordsList) {
   let biggestWord = '';
@@ -50,6 +50,26 @@ function findSmallestWord(wordsList) {
   return smallestWord;
 }
 
+let array = ['java', 'javascript', 'python', 'html', 'css'];
+
 console.log(findBiggestWord(array));
 
 console.log(findSmallestWord(array));
+
+
+function isPrime(number, initialNumber=number) {
+  if (number === 2) return true;
+  return initialNumber % (number - 1) === 0 ? false : isPrime(number - 1, initialNumber)
+}
+
+function theBiggestPrime(number) {
+  if (!isNumber(number)) return 'Por favor, digite um número válido';
+  if (number < 2) return 'Por favor, digite um número maior ou igual a 2';
+  let biggestPrime = 2;
+  for (let index = 2; index <= number; index++) {
+    biggestPrime = isPrime(index) ? index : biggestPrime;
+  }
+  return biggestPrime;
+}
+
+console.log(theBiggestPrime(50));
