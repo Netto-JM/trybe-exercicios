@@ -18,7 +18,7 @@ function reverseWordPracticalWay(word) {
 }
 
 function reverseWordVerboseWay(word) {
-  let reversedWord = ''
+  let reversedWord = '';
   for (let index = word.length-1; index >= 0; index--) {
     reversedWord += word[index];
   }
@@ -34,7 +34,7 @@ function findBiggestWord(wordsList) {
   let biggestWord = '';
   for (let index = 0; index < wordsList.length; index++) {
     if (wordsList[index].length > biggestWord.length) {
-      biggestWord = wordsList[index]
+      biggestWord = wordsList[index];
     }
   }
   return biggestWord;
@@ -44,7 +44,7 @@ function findSmallestWord(wordsList) {
   let smallestWord = wordsList[0];
   for (let index = 0; index < wordsList.length; index++) {
     if (wordsList[index].length < smallestWord.length) {
-      smallestWord = wordsList[index]
+      smallestWord = wordsList[index];
     }
   }
   return smallestWord;
@@ -59,14 +59,14 @@ console.log(findSmallestWord(array));
 
 function isPrime(number, initialNumber=number) {
   if (number === 2) return true;
-  return initialNumber % (number - 1) === 0 ? false : isPrime(number - 1, initialNumber)
+  return initialNumber % (number - 1) === 0 ? false : isPrime(number - 1, initialNumber);
 }
 
 /* I tried a clousore solution but it didn't work
 function isPrimeConstructor(initialNumber) {
   return function isPrime(number) {
     if (number === 2) return true;
-    return initialNumber % (number - 1) === 0 ? false : isPrime(number - 1)
+    return initialNumber % (number - 1) === 0 ? false : isPrime(number - 1);
   }
 } */
 
