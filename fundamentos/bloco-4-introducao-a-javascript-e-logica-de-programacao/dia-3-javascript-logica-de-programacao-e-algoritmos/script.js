@@ -62,7 +62,16 @@ function isPrime(number, initialNumber=number) {
   return initialNumber % (number - 1) === 0 ? false : isPrime(number - 1, initialNumber)
 }
 
+/* I tried a clousore solution but it didn't work
+function isPrimeConstructor(initialNumber) {
+  return function isPrime(number) {
+    if (number === 2) return true;
+    return initialNumber % (number - 1) === 0 ? false : isPrime(number - 1)
+  }
+} */
+
 function theBiggestPrime(number) {
+  // const isPrime = isPrimeConstructor(number) My clousore didn't work :'(
   if (!isNumber(number)) return 'Por favor, digite um número válido';
   if (number < 2) return 'Por favor, digite um número maior ou igual a 2';
   let biggestPrime = 2;
