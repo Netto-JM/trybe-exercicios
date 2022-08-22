@@ -1,7 +1,7 @@
 function drawRectangle(number) {
-  for (let i = 0; i < number; i++) {
+  for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
     let row = ''
-    for (let j = 0; j < number; j++) {
+    for (let innerIndex = 0; innerIndex < number; innerIndex += 1) {
       row += '*'
     }
     console.log(row);
@@ -10,10 +10,11 @@ function drawRectangle(number) {
 
 drawRectangle(5)
 
+
 function drawTriangleRectangleLeft(number) {
-  for (let i = 0; i < number; i++) {
+  for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
     let row = ''
-    for (let j = number; j >= number - i; j--) {
+    for (let innerIndex = number; innerIndex >= number - outerIndex; innerIndex -= 1) {
       row += '*'
     }
     console.log(row);
@@ -22,14 +23,47 @@ function drawTriangleRectangleLeft(number) {
 
 drawTriangleRectangleLeft(5)
 
+
 function drawTriangleRectangleRight(number) {
-  //code here
+  let spacesToPrint = 4;
+  for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
+    let row = ''
+    let spacesCounter = spacesToPrint;
+    for (let innerIndex = 0; innerIndex < number; innerIndex += 1) {
+      if (spacesCounter > 0) {
+        row += ' '
+        spacesCounter -= 1
+        continue
+      }
+      row += '*'
+    }
+    spacesToPrint -= 1
+    console.log(row);
+  }
 }
+
+drawTriangleRectangleRight(5)
+
 
 function drawPiramid(number) {
   //code here
 }
 
+
 function drawHollowPiramid(number) {
   //code here
 }
+
+
+/* 
+function drawTriangleRectangleLeftUpsideDown(number) {
+  for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
+    let row = ''
+    for (let innerIndex = 1; innerIndex <= number - outerIndex; innerIndex += 1) {
+      row += '*'
+    }
+    console.log(row);
+  }
+}
+
+drawTriangleRectangleLeftUpsideDown(5) */
