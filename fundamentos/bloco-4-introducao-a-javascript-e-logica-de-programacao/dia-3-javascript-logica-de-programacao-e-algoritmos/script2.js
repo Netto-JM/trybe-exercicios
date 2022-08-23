@@ -30,6 +30,15 @@ function drawRectangleAsterisks(stopper) {
   return row;
 }
 
+function isPyramidBase(row, base) {
+  const asterisksCount = (row.split("*").length - 1);
+  return asterisksCount === base;
+}
+
+function isPyramidTop(row) {
+  return row.indexOf('*') === row.lastIndexOf('*');
+}
+
 
 function drawRectangle(number) {
   if (!isPositiveNumber(number)) return "Invalid number, please enter a positivenumber";
@@ -66,12 +75,14 @@ function drawSpacesAroundAsterisks(row, base) {
 function makeHollow(row, base) {
   if (isPyramidBase(row, base) || isPyramidTop(row)) return row;
   //logic goes here
+  console.log(row);
   return row;
 }
 
+makeHollow(' ***** ', 7);
+
 function drawPyramidRow(base, stopper) {
-  let pyramidRow = ''
-  pyramidRow = drawPyramidAsterisks(base, stopper);
+  let pyramidRow = drawPyramidAsterisks(base, stopper);
   pyramidRow = drawSpacesAroundAsterisks(pyramidRow, base);
   return pyramidRow;
 }
@@ -81,7 +92,7 @@ function drawPyramid(number, hollow) {
   let pyramid = '';
   for (let outerIndex = 0; outerIndex < number; outerIndex += 2) {
     let row = drawPyramidRow(number, number - outerIndex);
-    if (hollow) row = makeHollow(row, number)
+    if (hollow) row = makeHollow(row, number);
     row = addNewLineAtTheEnd(row);
     pyramid += row;
     console.log(outerIndex);
@@ -96,24 +107,13 @@ drawPyramid(7, true);
 
 
 
-function isPyramidBase(row, base) {
-  return row.length === base;
-}
-
-function isPyramidTop(row) {
-  return row.indexOf('*') === row.lastIndexOf('*');
-}
-
-
-
-
 function drawTriangleRectangleLeft(number) {
   if (!isPositiveNumber(number)) return "Invalid number, please enter a positivenumber";
   let triangle = '';
   for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
     let row = drawPyramidAsterisks(number, number - outerIndex);
-    row = addNewLineAtTheEnd(row)
-    triangle += row
+    row = addNewLineAtTheEnd(row);
+    triangle += row;
   }
   console.log(triangle);
 }
