@@ -45,6 +45,7 @@ function drawRectangle(number) {
 drawRectangle(5);
 
 
+
 function drawPyramidAsterisks(base, stopper) {
   let row = '';
   for (let index = base; index >= stopper; index -= 1) {
@@ -62,24 +63,26 @@ function drawSpacesAroundAsterisks(row, base) {
   return row;
 }
 
-function isPyramidTop(row) {
-  return row.indexOf('*') === row.lastIndexOf('*');
+function makeHollow(row, base) {
+  if (isPyramidBase(row, base) || isPyramidTop(row)) return row;
+  //logic goes here
+  return row;
 }
 
 function drawPyramidRow(base, stopper) {
   let pyramidRow = ''
   pyramidRow = drawPyramidAsterisks(base, stopper);
   pyramidRow = drawSpacesAroundAsterisks(pyramidRow, base);
-  pyramidRow = addNewLineAtTheEnd(pyramidRow);
   return pyramidRow;
 }
 
-
-function drawPyramid(number) {
+function drawPyramid(number, hollow) {
   if (!isValidPyramidBase(number)) return "Invalid base, please enter a positive odd number";
   let pyramid = '';
   for (let outerIndex = 0; outerIndex < number; outerIndex += 2) {
     let row = drawPyramidRow(number, number - outerIndex);
+    if (hollow) row = makeHollow(row, number)
+    row = addNewLineAtTheEnd(row);
     pyramid += row;
     console.log(outerIndex);
     console.log(row.length);
@@ -87,27 +90,19 @@ function drawPyramid(number) {
   console.log(pyramid);
 }
 
-drawPyramid(5);
+drawPyramid(5, false);
+
+drawPyramid(7, true);
 
 
-function makeHollow(row, base) {
-  if (isPyramidTop(row) || row.length === base) return row;
+
+function isPyramidBase(row, base) {
+  return row.length === base;
 }
 
-function drawHollowPyramid(number) {
-  if (!isValidPyramidBase(number)) return "Invalid base, please enter a positive odd number";
-  let pyramid = '';
-  for (let outerIndex = 0; outerIndex < number; outerIndex += 2) {
-    let row = drawPyramidRow(number, number - outerIndex);
-    // row = makeHollow(row, number)
-    pyramid += row;
-    console.log(outerIndex);
-    console.log(row.length);
-  }
-  console.log(pyramid);
+function isPyramidTop(row) {
+  return row.indexOf('*') === row.lastIndexOf('*');
 }
-
-drawHollowPyramid(5);
 
 
 
