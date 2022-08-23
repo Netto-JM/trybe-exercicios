@@ -45,9 +45,9 @@ function drawRectangle(number) {
 drawRectangle(5);
 
 
-function drawPyramidAsterisks(index, stopper) {
+function drawPyramidAsterisks(base, stopper) {
   let row = '';
-  for (; index >= stopper; index -= 1) {
+  for (let index = base; index >= stopper; index -= 1) {
     row += '*';
   }
   return row;
@@ -63,8 +63,15 @@ function drawSpacesAroundAsterisks(row, base) {
 }
 
 function isPyramidTop(row) {
-  if (row.indexOf('*') === -1) return 'Invalid row';
   return row.indexOf('*') === row.lastIndexOf('*');
+}
+
+function drawPyramidRow(base, stopper) {
+  let pyramidRow = ''
+  pyramidRow = drawPyramidAsterisks(base, stopper);
+  pyramidRow = drawSpacesAroundAsterisks(pyramidRow, base);
+  pyramidRow = addNewLineAtTheEnd(pyramidRow);
+  return pyramidRow;
 }
 
 
@@ -72,9 +79,7 @@ function drawPyramid(number) {
   if (!isValidPyramidBase(number)) return "Invalid base, please enter a positive odd number";
   let pyramid = '';
   for (let outerIndex = 0; outerIndex < number; outerIndex += 2) {
-    let row = drawPyramidAsterisks(number, number - outerIndex);
-    row = drawSpacesAroundAsterisks(row, number);
-    row = addNewLineAtTheEnd(row);
+    let row = drawPyramidRow(number, number - outerIndex);
     pyramid += row;
     console.log(outerIndex);
     console.log(row.length);
@@ -85,10 +90,25 @@ function drawPyramid(number) {
 drawPyramid(5);
 
 
+function makeHollow(row, base) {
+  if (isPyramidTop(row) || row.length === base) return row;
+}
+
 function drawHollowPyramid(number) {
   if (!isValidPyramidBase(number)) return "Invalid base, please enter a positive odd number";
-  //code here
+  let pyramid = '';
+  for (let outerIndex = 0; outerIndex < number; outerIndex += 2) {
+    let row = drawPyramidRow(number, number - outerIndex);
+    // row = makeHollow(row, number)
+    pyramid += row;
+    console.log(outerIndex);
+    console.log(row.length);
+  }
+  console.log(pyramid);
 }
+
+drawHollowPyramid(5);
+
 
 
 
