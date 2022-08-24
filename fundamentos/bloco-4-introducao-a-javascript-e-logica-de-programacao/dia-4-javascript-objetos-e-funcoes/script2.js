@@ -63,3 +63,10 @@ function findMostRepeatedNumber(numbersArray) {
 }
 
 console.log(findMostRepeatedNumber([2, 3, 2, 5, 8, 2, 3]));
+
+
+function calcSummation(number) {
+  return number * number / 2 + (number / 2);
+}
+
+console.log(calcSummation(13));
