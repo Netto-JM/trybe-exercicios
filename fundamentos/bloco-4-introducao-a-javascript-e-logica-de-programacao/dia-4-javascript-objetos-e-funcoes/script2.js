@@ -1,6 +1,6 @@
 function isPalindrome(word) {
   const reversedWord = word.split('').reverse().join('');
-  return (word === reversedWord)
+  return (word === reversedWord);
 }
 
 console.log(isPalindrome('arara'));
@@ -42,9 +42,9 @@ function countRepetitionOfNumbers(numbersArray) {
   const numbersCount = {};
   for (const number of numbersArray) {
     if (!numbersCount[number]) {
-      numbersCount[number] = 0
+      numbersCount[number] = 0;
     }
-    numbersCount[number] += 1
+    numbersCount[number] += 1;
   }
   return numbersCount;
 }
@@ -56,7 +56,7 @@ function findMostRepeatedNumber(numbersArray) {
   for (const key in numbersCount) {
     if (numbersCount[key] > repetitionCounter) {
       mostRepeatedNumber = key;
-      repetitionCounter = numbersCount[key]
+      repetitionCounter = numbersCount[key];
     }
   }
   return mostRepeatedNumber;
@@ -70,3 +70,17 @@ function calcSummation(number) {
 }
 
 console.log(calcSummation(13));
+
+
+function checkWordEnding(word, ending) {
+  let wordEnding = '';
+  for (let index = word.length - ending.length; index < word.length; index += 1) {
+    wordEnding += word[index];
+  }
+  if (wordEnding === ending) return true;
+  return false;
+}
+
+console.log(checkWordEnding('trybe', 'be'));
+console.log(checkWordEnding('joaofernando', 'fernan'));
+console.log(checkWordEnding('Aninha', 'nha'));
