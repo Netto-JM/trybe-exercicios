@@ -64,6 +64,8 @@ drawRectangle(5);
 
 
 
+
+
 function drawPyramidAsterisks(base, stopper) {
   let row = '';
   for (let index = base; index >= stopper; index -= 1) {
@@ -93,8 +95,6 @@ function makeHollow(row, base) {
   return hollowRow;
 }
 
-makeHollow(' ***** ', 7);
-
 function drawPyramidRow(base, stopper) {
   let pyramidRow = drawPyramidAsterisks(base, stopper);
   pyramidRow = drawSpacesAroundAsterisks(pyramidRow, base);
@@ -116,7 +116,9 @@ function drawPyramid(number, isHollow) {
 
 drawPyramid(5, false);
 
-drawPyramid(7, true);
+drawPyramid(9, true);
+
+
 
 
 
@@ -133,6 +135,9 @@ function drawTriangleRectangleLeft(number) {
 }
 
 drawTriangleRectangleLeft(5)
+
+
+
 
 
 function drawTriangleRectangleRight(number) {
