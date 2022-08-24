@@ -36,3 +36,30 @@ function findLongestWord(wordsArray) {
 }
 
 console.log(findLongestWord(['José', 'Lucas', 'Nádia', 'Fernanda', 'Cairo', 'Joana']));
+
+
+function countRepetitionOfNumbers(numbersArray) {
+  const numbersCount = {};
+  for (const number of numbersArray) {
+    if (!numbersCount[number]) {
+      numbersCount[number] = 0
+    }
+    numbersCount[number] += 1
+  }
+  return numbersCount;
+}
+
+function findMostRepeatedNumber(numbersArray) {
+  const numbersCount = countRepetitionOfNumbers(numbersArray);
+  let mostRepeatedNumber = 0;
+  let repetitionCounter = 0;
+  for (const key in numbersCount) {
+    if (numbersCount[key] > repetitionCounter) {
+      mostRepeatedNumber = key;
+      repetitionCounter = numbersCount[key]
+    }
+  }
+  return mostRepeatedNumber;
+}
+
+console.log(findMostRepeatedNumber([2, 3, 2, 5, 8, 2, 3]));
