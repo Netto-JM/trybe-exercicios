@@ -41,7 +41,8 @@ function isPyramidTop(row) {
 
 
 function drawRectangle(number) {
-  if (!isPositiveNumber(number)) return "Invalid number, please enter a positivenumber";
+  const errorMessage = "Invalid number, please enter a positive number";
+  if (!isPositiveNumber(number)) return errorMessage;
   let rectangle = '';
   for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
     let row = drawRectangleAsterisks(number);
@@ -88,7 +89,8 @@ function drawPyramidRow(base, stopper) {
 }
 
 function drawPyramid(number, hollow) {
-  if (!isValidPyramidBase(number)) return "Invalid base, please enter a positive odd number";
+  const errorMessage = "Invalid base, please enter a positive odd number";
+  if (!isValidPyramidBase(number)) return errorMessage;
   let pyramid = '';
   for (let outerIndex = 0; outerIndex < number; outerIndex += 2) {
     let row = drawPyramidRow(number, number - outerIndex);
@@ -108,7 +110,8 @@ drawPyramid(7, true);
 
 
 function drawTriangleRectangleLeft(number) {
-  if (!isPositiveNumber(number)) return "Invalid number, please enter a positivenumber";
+  const errorMessage = "Invalid number, please enter a positive number";
+  if (!isPositiveNumber(number)) return errorMessage;
   let triangle = '';
   for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
     let row = drawPyramidAsterisks(number, number - outerIndex);
@@ -122,7 +125,8 @@ drawTriangleRectangleLeft(5)
 
 
 function drawTriangleRectangleRight(number) {
-  if (!isPositiveNumber(number)) return "Invalid number, please enter a positivenumber";
+  const errorMessage = "Invalid number, please enter a positive number";
+  if (!isPositiveNumber(number)) return errorMessage;
   let triangle = '';
   let spacesToPrint = 4;
   for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
@@ -150,7 +154,8 @@ drawTriangleRectangleRight(5);
 
 
 function drawTriangleRectangleLeftUpsideDown(number) {
-  if (!isPositiveNumber(number)) return "Invalid number, please enter a positivenumber";
+  const errorMessage = "Invalid number, please enter a positive number";
+  if (!isPositiveNumber(number)) return errorMessage;
   let triangle = '';
   for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
     let row = '';
