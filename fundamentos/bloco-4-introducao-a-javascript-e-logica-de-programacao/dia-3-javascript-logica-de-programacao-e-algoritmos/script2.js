@@ -39,6 +39,10 @@ function isPyramidBase(row, base) {
   return asterisksAmount === base;
 }
 
+function isPyramidEdge(row, asteriskIndex) {
+  return row.indexOf('*') === asteriskIndex || row.lastIndexOf('*') === asteriskIndex;
+}
+
 function isPyramidTop(row) {
   return row.indexOf('*') === row.lastIndexOf('*');
 }
@@ -79,10 +83,14 @@ function drawSpacesAroundAsterisks(row, base) {
 
 function makeHollow(row, base) {
   if (isPyramidBase(row, base) || isPyramidTop(row)) return row;
-  let rowTest = row
-  //logic goes here
-  console.log(row);
-  return row;
+  let hollowRowArray = row.split('')
+  for (let index = 0; index < row.length; index += 1) {
+    if (!isPyramidEdge(row, index)) {
+      hollowRowArray[index] = ' '
+    }
+  }
+  let hollowRow = hollowRowArray.join('')
+  return hollowRow;
 }
 
 makeHollow(' ***** ', 7);
@@ -102,8 +110,6 @@ function drawPyramid(number, isHollow) {
     if (isHollow) row = makeHollow(row, number);
     row = addNewLineAtTheEnd(row);
     pyramid += row;
-    console.log(outerIndex);
-    console.log(row.length);
   }
   console.log(pyramid);
 }
