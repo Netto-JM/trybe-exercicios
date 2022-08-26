@@ -77,9 +77,12 @@ const moradores = {
     },
   ],
 };
-const nome = null;
-const sobrenome = null;
-const andar = null;
-const apartamento = null;
+
+const {
+  nome,
+  sobrenome,
+  andar,
+  apartamento,
+} = moradores.blocoDois[1];
 const zoeyInfo = `O morador do bloco 2 de nome ${nome} ${sobrenome} mora no ${andar}° andar, apartamento ${apartamento}`;
 console.log(zoeyInfo);
