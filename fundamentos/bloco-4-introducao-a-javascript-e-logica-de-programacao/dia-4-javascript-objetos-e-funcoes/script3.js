@@ -77,7 +77,6 @@ const moradores = {
     },
   ],
 };
-
 const {
   nome,
   sobrenome,
@@ -86,3 +85,29 @@ const {
 } = moradores.blocoDois[1];
 const zoeyInfo = `O morador do bloco 2 de nome ${nome} ${sobrenome} mora no ${andar}° andar, apartamento ${apartamento}`;
 console.log(zoeyInfo);
+
+function getResidentFullNames(block) {
+  const fullNames = []
+  for (const residentInfo of block) {
+    const {
+      nome,
+      sobrenome,
+    } = residentInfo;
+    const fullName = `${nome} ${sobrenome}`;
+    fullNames.push(fullName);
+  }
+  return fullNames;
+}
+const {
+  blocoUm,
+  blocoDois
+} = moradores;
+const blockOneFullNames = getResidentFullNames(blocoUm);
+const blockTwoFullNames = getResidentFullNames(blocoDois);
+function printFullNames(fullNamesList) {
+  for (const fullName of fullNamesList) {
+    console.log(fullName);
+  }
+}
+printFullNames(blockOneFullNames);
+printFullNames(blockTwoFullNames);
