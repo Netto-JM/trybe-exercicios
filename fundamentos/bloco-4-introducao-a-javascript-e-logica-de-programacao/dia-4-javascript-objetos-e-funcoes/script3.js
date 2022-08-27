@@ -46,8 +46,17 @@ function countRepetitionOfElements(elementsArray) {
   }
   return elementsCount;
 }
-const basketCountedObject = countRepetitionOfElements(basket)
-console.log(basketCountedObject);
+const basketCountedObject = countRepetitionOfElements(basket);
+function getRepetitionString(countedElementsObject) {
+  let repetitionString = 'Sua cesta possui: ';
+  for (const fruit in countedElementsObject) {
+    const countFruitString = `${countedElementsObject[fruit]} ${fruit}s, `
+    repetitionString += countFruitString;
+  }
+  return repetitionString.slice(0,-2)
+}
+const repetitionString = getRepetitionString(basketCountedObject);
+console.log(repetitionString);
 
 const moradores = {
   blocoUm: [{
