@@ -1,11 +1,20 @@
 /* Faça um programa que receba uma string em algarismos romanos e retorne o número que a string representa. */
-function remanNumeralLogic(prev, curr) {
-
+function countRepetitionOfElements(elementsArray) {
+  const elementsCount = {};
+  for (const element of elementsArray) {
+    if (!elementsCount[element]) {
+      elementsCount[element] = 0;
+    }
+    elementsCount[element] += 1;
+  }
+  return elementsCount;
 }
+
+
 
 function romanToDecimal(romanNumeral) {
   if (typeof romanNumeral !== 'string') {
-    return 'Wrong type'
+    return 'Wrong type';
   }
   if (romanNumeral.length === 0) {
     return "Empty string";
@@ -18,21 +27,42 @@ function romanToDecimal(romanNumeral) {
     C: 100,
     D: 500,
     M: 1000,
-  }
+  };
   if (romanNumeral.length === 1) {
     return romanRepresentation[romanNumeral] || 'Invalid or out of reach numeral';
   }
   for (const char of romanNumeral) {
-    const isInvalidChar = !romanRepresentation[char]
+    const isInvalidChar = !romanRepresentation[char];
     if (isInvalidChar) {
-      return 'Invalid or out of reach numeral'
+      return 'Invalid or out of reach numeral';
     }
   }
   const romanNumeralArray = romanNumeral.split('');
-  const decimalNumeral = romanNumeralArray.reduce()
-  return decimalNumeral
+  const romanMultipleOfFive = romanNumeralArray.filter(char => ['V', 'L', 'D'].includes(char))
+  const charRepetitionCount = countRepetitionOfElements(romanNumeralArray);
+  const charRepetitionOfMultipleOfFive = countRepetitionOfElements(romanMultipleOfFive);
+  const haveManyMultipleOfFive = Object.values(charRepetitionOfMultipleOfFive).some((number) => number > 1);
+  const haveManyRepeatedChars = Object.values(charRepetitionCount).some((number) => number > 3);
+  if (haveManyRepeatedChars || haveManyMultipleOfFive) {
+    return 'Invalid numeral';
+  }
+  const romanToDecimalArray = []
+  for (const char of romanNumeralArray) {
+    romanToDecimalArray.push(romanRepresentation[char])
+  }
+  let decimalNumeral = 0
+  for (let index = 0; index < romanToDecimalArray.length; index += 1) {
+    const currentDecimalNumber = romanToDecimalArray[index];
+    const nextDecimalNumber = romanToDecimalArray[index + 1]
+    if (currentDecimalNumber < nextDecimalNumber) {
+      decimalNumeral -= currentDecimalNumber
+    } else {
+      decimalNumeral += currentDecimalNumber
+    }
+  }
+  return decimalNumeral;
 }
-console.log(romanToDecimal('V'));
+console.log(romanToDecimal('CMXCIX'));
 
 const vector = [
   [1, 2],
@@ -72,23 +102,13 @@ const basket = [
   'Pera', 'Melancia', 'Jaca', 'Banana', 'Laranja', 'Jaca',
   'Banana', 'Pera', 'Abacate', 'Uva',
 ];
-function countRepetitionOfElements(elementsArray) {
-  const elementsCount = {};
-  for (const element of elementsArray) {
-    if (!elementsCount[element]) {
-      elementsCount[element] = 0;
-    }
-    elementsCount[element] += 1;
-  }
-  return elementsCount;
-}
 function getRepetitionString(countedElementsObject) {
-  let repetitionString = 'Sua cesta possui: ';
+  let repetitionString = 'Sua cesta possui:';
   for (const fruit in countedElementsObject) {
-    const countFruitString = `${countedElementsObject[fruit]} ${fruit}s, `
+    const countFruitString = ` ${countedElementsObject[fruit]} ${fruit}s,`;
     repetitionString += countFruitString;
   }
-  return repetitionString.slice(0,-2)
+  return repetitionString.slice(0,-1)
 }
 const basketCountedObject = countRepetitionOfElements(basket);
 const repetitionString = getRepetitionString(basketCountedObject);
@@ -132,7 +152,7 @@ const zoeyInfo = `O morador do bloco 2 de nome ${nome} ${sobrenome} mora no ${an
 console.log(zoeyInfo);
 
 function getResidentFullNames(block) {
-  const fullNames = []
+  const fullNames = [];
   for (const residentInfo of block) {
     const {
       nome,
