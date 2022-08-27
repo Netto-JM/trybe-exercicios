@@ -1,3 +1,39 @@
+/* Faça um programa que receba uma string em algarismos romanos e retorne o número que a string representa. */
+function remanNumeralLogic(prev, curr) {
+
+}
+
+function romanToDecimal(romanNumeral) {
+  if (typeof romanNumeral !== 'string') {
+    return 'Wrong type'
+  }
+  if (romanNumeral.length === 0) {
+    return "Empty string";
+  }
+  const romanRepresentation = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  }
+  if (romanNumeral.length === 1) {
+    return romanRepresentation[romanNumeral] || 'Invalid or out of reach numeral';
+  }
+  for (const char of romanNumeral) {
+    const isInvalidChar = !romanRepresentation[char]
+    if (isInvalidChar) {
+      return 'Invalid or out of reach numeral'
+    }
+  }
+  const romanNumeralArray = romanNumeral.split('');
+  const decimalNumeral = romanNumeralArray.reduce()
+  return decimalNumeral
+}
+console.log(romanToDecimal('V'));
+
 const vector = [
   [1, 2],
   [3, 4, 5, 6],
@@ -46,7 +82,6 @@ function countRepetitionOfElements(elementsArray) {
   }
   return elementsCount;
 }
-const basketCountedObject = countRepetitionOfElements(basket);
 function getRepetitionString(countedElementsObject) {
   let repetitionString = 'Sua cesta possui: ';
   for (const fruit in countedElementsObject) {
@@ -55,6 +90,7 @@ function getRepetitionString(countedElementsObject) {
   }
   return repetitionString.slice(0,-2)
 }
+const basketCountedObject = countRepetitionOfElements(basket);
 const repetitionString = getRepetitionString(basketCountedObject);
 console.log(repetitionString);
 
