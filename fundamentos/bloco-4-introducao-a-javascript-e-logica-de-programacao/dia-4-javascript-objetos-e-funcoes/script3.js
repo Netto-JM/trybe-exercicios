@@ -14,13 +14,13 @@ function buildValidator(funcsAndMessages) {
     for (const funcAndMessage of funcsAndMessages) {
       if (funcAndMessage[0](...args) === funcAndMessage[1]) {
         return {
-          isInputValid: false,
+          isValidInput: false,
           errorMessage: funcAndMessage[2]
         };
       }
     }
     return {
-      isInputValid: true
+      isValidInput: true
     };
   }
   return validateFunction;
@@ -109,21 +109,22 @@ function romanToDecimal(romanNumeral) {
     M: 1000,
   };
   const {
-    isInputValid,
+    isValidInput,
     errorMessage,
   } = validateRomanNumeral(romanNumeral, romanRepresentation);
 
-  const isInvalidInput = !isInputValid;
+  const isInvalidInput = !isValidInput;
   if (isInvalidInput) {
     return errorMessage;
   }
 
+  const romanNumeralArray = romanNumeral.split('');
   const romanToDecimalArray = convertRomanToDecimal(romanNumeralArray, romanRepresentation); 
   const decimalNumeral = getDecimalNumeral(romanToDecimalArray);
   return decimalNumeral;
 }
 
-console.log(romanToDecimal('MCDXLIVV'));
+console.log(romanToDecimal('MCDXLIV'));
 
 const vector = [
   [1, 2],
