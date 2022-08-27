@@ -1,4 +1,3 @@
-/* Faça um programa que receba uma string em algarismos romanos e retorne o número que a string representa. */
 function countRepetitionOfElements(elementsArray) {
   const elementsCount = {};
   for (const element of elementsArray) {
@@ -29,7 +28,7 @@ function buildValidator(funcsAndMessages) {
 
 function buildMaxRepetitionChecker(maxRepetition) {
   function checkMaxRepetition(list) {
-    let elementsArray = list
+    let elementsArray = list;
     if (typeof list === 'string') {
       elementsArray = list.split('');
     }
@@ -59,7 +58,7 @@ function checkKeysInObject(list, object) {
       return false;
     }
   }
-  return true
+  return true;
 }
 
 const validateRomanNumeral = buildValidator([
@@ -68,6 +67,28 @@ const validateRomanNumeral = buildValidator([
   [checkKeysInObject, false, 'Invalid or out of reach numeral'],
   [checkMaxRepetitionAtThree, true, 'Invalid numeral'],
 ])
+
+function convertRomanToDecimal(romanNumeralArray, romanRepresentation) {
+  const romanToDecimalArray = [];
+  for (const char of romanNumeralArray) {
+    romanToDecimalArray.push(romanRepresentation[char])
+  }
+  return romanToDecimalArray;
+}
+
+function getDecimalNumeral(romanToDecimalArray) {
+  let decimalNumeral = 0;
+  for (let index = 0; index < romanToDecimalArray.length; index += 1) {
+    const currentDecimalNumber = romanToDecimalArray[index];
+    const nextDecimalNumber = romanToDecimalArray[index + 1];
+    if (currentDecimalNumber < nextDecimalNumber) {
+      decimalNumeral -= currentDecimalNumber;
+    } else {
+      decimalNumeral += currentDecimalNumber;
+    }
+  }
+  return decimalNumeral;
+}
 
 function romanToDecimal(romanNumeral) {
   const romanRepresentation = {
@@ -81,43 +102,33 @@ function romanToDecimal(romanNumeral) {
   };
   const {
     isInputValid,
-    errorMessage
+    errorMessage,
   } = validateRomanNumeral(romanNumeral, romanRepresentation);
   const isInvalidInput = !isInputValid;
   if (isInvalidInput) {
     return errorMessage;
   }
 
-  const romanNumeralArray = romanNumeral.split('')
-  const romanMultipleOfFive = romanNumeralArray.filter(char => ['V', 'L', 'D'].includes(char))
+  const romanNumeralArray = romanNumeral.split('');
+  const romanMultipleOfFive = romanNumeralArray.filter(char => ['V', 'L', 'D'].includes(char));
   const haveManyMultipleOfFive = checkMaxRepetitionAtOne(romanMultipleOfFive);
 
   if (haveManyMultipleOfFive) {
     return 'Invalid numeral';
   }
+
+  const romanToDecimalArray = convertRomanToDecimal(romanNumeralArray, romanRepresentation);
   
-  const romanToDecimalArray = []
-  for (const char of romanNumeralArray) {
-    romanToDecimalArray.push(romanRepresentation[char])
-  }
-  let decimalNumeral = 0
-  for (let index = 0; index < romanToDecimalArray.length; index += 1) {
-    const currentDecimalNumber = romanToDecimalArray[index];
-    const nextDecimalNumber = romanToDecimalArray[index + 1]
-    if (currentDecimalNumber < nextDecimalNumber) {
-      decimalNumeral -= currentDecimalNumber
-    } else {
-      decimalNumeral += currentDecimalNumber
-    }
-  }
+  const decimalNumeral = getDecimalNumeral(romanToDecimalArray);
   return decimalNumeral;
+  
 }
-console.log(romanToDecimal('DD'));
+console.log(romanToDecimal('MCDXLIV'));
 
 const vector = [
   [1, 2],
   [3, 4, 5, 6],
-  [7, 8, 9, 10]
+  [7, 8, 9, 10],
 ];
 function arrayOfNumbers(vector) {
   const evenNumbers = [];
@@ -158,7 +169,7 @@ function getRepetitionString(countedElementsObject) {
     const countFruitString = ` ${countedElementsObject[fruit]} ${fruit}s,`;
     repetitionString += countFruitString;
   }
-  return repetitionString.slice(0,-1)
+  return repetitionString.slice(0,-1);
 }
 const basketCountedObject = countRepetitionOfElements(basket);
 const repetitionString = getRepetitionString(basketCountedObject);
@@ -215,7 +226,7 @@ function getResidentFullNames(block) {
 }
 const {
   blocoUm,
-  blocoDois
+  blocoDois,
 } = moradores;
 const blockOneFullNames = getResidentFullNames(blocoUm);
 const blockTwoFullNames = getResidentFullNames(blocoDois);
