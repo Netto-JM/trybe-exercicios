@@ -10,15 +10,66 @@ function countRepetitionOfElements(elementsArray) {
   return elementsCount;
 }
 
+function buildValidator(funcsAndMessages) {
+  function validateFunction(...args) {
+    for (const funcAndMessage of funcsAndMessages) {
+      if (funcAndMessage[0](...args) === funcAndMessage[1]) {
+        return {
+          isInputValid: false,
+          errorMessage: funcAndMessage[2]
+        };
+      }
+    }
+    return {
+      isInputValid: true
+    };
+  }
+  return validateFunction;
+}
 
+function buildMaxRepetitionChecker(maxRepetition) {
+  function checkMaxRepetition(list) {
+    let elementsArray = list
+    if (typeof list === 'string') {
+      elementsArray = list.split('');
+    }
+    const elementsRepetitionCount = countRepetitionOfElements(elementsArray);
+    const haveManyRepeatedChars = Object.values(elementsRepetitionCount).some((number) => number > maxRepetition);
+    return haveManyRepeatedChars;
+  }
+  return checkMaxRepetition;
+}
+
+const checkMaxRepetitionAtThree = buildMaxRepetitionChecker(3);
+
+const checkMaxRepetitionAtOne = buildMaxRepetitionChecker(1);
+
+function isString(element) {
+  return typeof element === 'string';
+}
+
+function isEmpty(element) {
+  return element.length === 0;
+}
+
+function checkKeysInObject(list, object) {
+  for (const element of list) {
+    const isNotAKey = !object[element];
+    if (isNotAKey) {
+      return false;
+    }
+  }
+  return true
+}
+
+const validateRomanNumeral = buildValidator([
+  [isString, false, 'Wrong type'],
+  [isEmpty, true, 'Empty string'],
+  [checkKeysInObject, false, 'Invalid or out of reach numeral'],
+  [checkMaxRepetitionAtThree, true, 'Invalid numeral'],
+])
 
 function romanToDecimal(romanNumeral) {
-  if (typeof romanNumeral !== 'string') {
-    return 'Wrong type';
-  }
-  if (romanNumeral.length === 0) {
-    return "Empty string";
-  }
   const romanRepresentation = {
     I: 1,
     V: 5,
@@ -28,24 +79,23 @@ function romanToDecimal(romanNumeral) {
     D: 500,
     M: 1000,
   };
-  if (romanNumeral.length === 1) {
-    return romanRepresentation[romanNumeral] || 'Invalid or out of reach numeral';
+  const {
+    isInputValid,
+    errorMessage
+  } = validateRomanNumeral(romanNumeral, romanRepresentation);
+  const isInvalidInput = !isInputValid;
+  if (isInvalidInput) {
+    return errorMessage;
   }
-  for (const char of romanNumeral) {
-    const isInvalidChar = !romanRepresentation[char];
-    if (isInvalidChar) {
-      return 'Invalid or out of reach numeral';
-    }
-  }
-  const romanNumeralArray = romanNumeral.split('');
+
+  const romanNumeralArray = romanNumeral.split('')
   const romanMultipleOfFive = romanNumeralArray.filter(char => ['V', 'L', 'D'].includes(char))
-  const charRepetitionCount = countRepetitionOfElements(romanNumeralArray);
-  const charRepetitionOfMultipleOfFive = countRepetitionOfElements(romanMultipleOfFive);
-  const haveManyMultipleOfFive = Object.values(charRepetitionOfMultipleOfFive).some((number) => number > 1);
-  const haveManyRepeatedChars = Object.values(charRepetitionCount).some((number) => number > 3);
-  if (haveManyRepeatedChars || haveManyMultipleOfFive) {
+  const haveManyMultipleOfFive = checkMaxRepetitionAtOne(romanMultipleOfFive);
+
+  if (haveManyMultipleOfFive) {
     return 'Invalid numeral';
   }
+  
   const romanToDecimalArray = []
   for (const char of romanNumeralArray) {
     romanToDecimalArray.push(romanRepresentation[char])
@@ -62,7 +112,7 @@ function romanToDecimal(romanNumeral) {
   }
   return decimalNumeral;
 }
-console.log(romanToDecimal('CMXCIX'));
+console.log(romanToDecimal('DD'));
 
 const vector = [
   [1, 2],
