@@ -23,6 +23,8 @@
     const pTags = document.getElementsByTagName('p');
     const mainContent = document.getElementsByClassName('main-content')[0];
     const centerContent = document.getElementsByClassName('center-content')[0];
+    const titleElement = document.getElementsByClassName('title')[0];
+    const titleText = 'Exercício 5.1 - JavaScript'
     const myFuture = 'Desejo estar a caminho de me tornar um desenvolvedor pleno'
     const trybeColor = 'rgb(76, 164, 109)';
     function changeElementText(element, text) {
@@ -33,6 +35,7 @@
     }
 
     changeElementText(pTags[1], myFuture);
+    changeElementText(titleElement, titleText);
     changeElementBackgroundColor(mainContent, trybeColor);
     changeElementBackgroundColor(centerContent, 'white');
         /*
