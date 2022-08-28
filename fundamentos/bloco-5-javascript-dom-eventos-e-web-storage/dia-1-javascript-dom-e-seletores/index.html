@@ -21,15 +21,20 @@
   </main>
   <script>
     const pTags = document.getElementsByTagName('p');
+    const mainContent = document.getElementsByClassName('main-content')[0];
+    const centerContent = document.getElementsByClassName('center-content')[0];
     const myFuture = 'Desejo estar a caminho de me tornar um desenvolvedor pleno'
+    const trybeColor = 'rgb(76, 164, 109)';
     function changeElementText(element, text) {
       element.textContent = text;
     }
-    function changeBackgroundToGreen(params) {
-      
+    function changeElementBackgroundColor(element, color) {
+      element.style.backgroundColor = color;
     }
 
     changeElementText(pTags[1], myFuture);
+    changeElementBackgroundColor(mainContent, trybeColor);
+    changeElementBackgroundColor(centerContent, 'white');
         /*
         Aqui você vai modificar os elementos já existentes utilizando apenas as funções:
         - document.getElementById()
