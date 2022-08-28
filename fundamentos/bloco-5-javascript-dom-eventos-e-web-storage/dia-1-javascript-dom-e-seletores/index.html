@@ -21,9 +21,15 @@
   </main>
   <script>
     const pTags = document.getElementsByTagName('p');
-    function yourFuture(text) {
-      pTags[1].textContent = text;
+    const myFuture = 'Desejo estar a caminho de me tornar um desenvolvedor pleno'
+    function changeElementText(element, text) {
+      element.textContent = text;
     }
+    function changeBackgroundToGreen(params) {
+      
+    }
+
+    changeElementText(pTags[1], myFuture);
         /*
         Aqui você vai modificar os elementos já existentes utilizando apenas as funções:
         - document.getElementById()
