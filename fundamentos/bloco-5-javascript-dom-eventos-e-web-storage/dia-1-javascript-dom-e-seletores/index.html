@@ -22,18 +22,25 @@
   <script>
     const pTags = document.getElementsByTagName('p');
     const uppercasedFirstPText = pTags[0].textContent.toLocaleUpperCase();
-    console.log(uppercasedFirstPText);
     const mainContent = document.getElementsByClassName('main-content')[0];
     const centerContent = document.getElementsByClassName('center-content')[0];
     const titleElement = document.getElementsByClassName('title')[0];
     const titleText = 'Exercício 5.1 - JavaScript'
     const myFuture = 'Desejo estar a caminho de me tornar um desenvolvedor pleno'
     const trybeColor = 'rgb(76, 164, 109)';
+
     function changeElementText(element, text) {
       element.textContent = text;
     }
+
     function changeElementBackgroundColor(element, color) {
       element.style.backgroundColor = color;
+    }
+
+    function logAllElementsListText(elementsList) {
+      for (const element of elementsList) {
+        console.log(element.innerHTML);
+      }
     }
 
     changeElementText(pTags[0], uppercasedFirstPText);
@@ -41,6 +48,7 @@
     changeElementText(titleElement, titleText);
     changeElementBackgroundColor(mainContent, trybeColor);
     changeElementBackgroundColor(centerContent, 'white');
+    logAllElementsListText(pTags);
         /*
         Aqui você vai modificar os elementos já existentes utilizando apenas as funções:
         - document.getElementById()
