@@ -21,6 +21,8 @@
   </main>
   <script>
     const pTags = document.getElementsByTagName('p');
+    const uppercasedFirstPText = pTags[0].textContent.toLocaleUpperCase();
+    console.log(uppercasedFirstPText);
     const mainContent = document.getElementsByClassName('main-content')[0];
     const centerContent = document.getElementsByClassName('center-content')[0];
     const titleElement = document.getElementsByClassName('title')[0];
@@ -34,6 +36,7 @@
       element.style.backgroundColor = color;
     }
 
+    changeElementText(pTags[0], uppercasedFirstPText);
     changeElementText(pTags[1], myFuture);
     changeElementText(titleElement, titleText);
     changeElementBackgroundColor(mainContent, trybeColor);
