@@ -1,11 +1,7 @@
-/* Acesse o elemento elementoOndeVoceEsta.
-Acesse pai a partir de elementoOndeVoceEsta e adicione uma color a ele.
-Acesse o primeiroFilhoDoFilho e adicione um texto a ele. Você se lembra dos vídeos da aula anterior, como fazer isso?
-Acesse o primeiroFilho a partir de pai.
-Agora acesse o primeiroFilho a partir de elementoOndeVoceEsta.
-Agora acesse o texto Atenção! a partir de elementoOndeVoceEsta.
-Agora acesse o terceiroFilho a partir de elementoOndeVoceEsta.
-Agora acesse o terceiroFilho a partir de pai. */
+/* Crie um irmão para elementoOndeVoceEsta.
+Crie um filho para elementoOndeVoceEsta.
+Crie um filho para primeiroFilhoDoFilho.
+A partir desse filho criado, acesse terceiroFilho.*/
 
 function changeElementColor(element, color) {
   element.style.color = color;
@@ -13,6 +9,14 @@ function changeElementColor(element, color) {
 
 function changeElementText(element, text) {
   element.textContent = text;
+}
+
+function createElementWithText(element, text, className, idName) {
+  const newElement = document.createElement(element);
+  const textNode = document.createTextNode(text);
+  if (className) newElement.classList.add(className);
+  if (idName) setAttribute('id', idName);
+  newElement.appendChild(textNode)
 }
 
 const elementoOndeVoceEsta = document.getElementById('elementoOndeVoceEsta');
