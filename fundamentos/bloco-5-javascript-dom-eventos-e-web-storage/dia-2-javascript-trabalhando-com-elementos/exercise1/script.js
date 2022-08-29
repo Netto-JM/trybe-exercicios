@@ -1,7 +1,4 @@
-/* Crie um irmão para elementoOndeVoceEsta.
-Crie um filho para elementoOndeVoceEsta.
-Crie um filho para primeiroFilhoDoFilho.
-A partir desse filho criado, acesse terceiroFilho.*/
+
 
 function changeElementColor(element, color) {
   element.style.color = color;
@@ -48,3 +45,11 @@ const filhoDoPrimeiroFilhoDoFilho = createElementWithText('section', 'filhoDoPri
 primeiroFilhoDoFilho.appendChild(filhoDoPrimeiroFilhoDoFilho);
 const FDPFDF = document.getElementById('filhoDoPrimeiroFilhoDoFilho');
 console.log(FDPFDF.parentNode.parentNode.nextElementSibling);
+
+pai.removeChild(primeiroFilho);
+pai.removeChild(terceiroFilho.nextElementSibling);
+pai.removeChild(terceiroFilho);
+pai.removeChild(pai.lastElementChild);
+pai.removeChild(textNodeAtention);
+elementoOndeVoceEsta.removeChild(primeiroFilhoDoFilho.nextElementSibling);
+elementoOndeVoceEsta.removeChild(primeiroFilhoDoFilho.nextElementSibling);
