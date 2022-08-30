@@ -60,10 +60,20 @@ const decemberHolidays = [24, 25, 31];
 
 const decemberFridays = [4, 11, 18, 25];
 
+function zoomInDay(event) {
+  event.target.style.fontSize = '2.5rem'
+}
+
+function zoomOutDay(event) {
+  event.target.style.fontSize = '20px'
+}
+
 for (const day of decemberDaysList) {
   const decemberDayItem = completeElementBuilder('li', day, daysList, ['day']);
   if (decemberHolidays.includes(day)) decemberDayItem.classList.add('holiday');
   if (decemberFridays.includes(day)) decemberDayItem.classList.add('friday');
+  decemberDayItem.addEventListener('mouseover', zoomInDay);
+  decemberDayItem.addEventListener('mouseout', zoomOutDay);
 }
 
 const holidayButton = completeElementBuilder('button', 'Feriados', buttonContainer, undefined, 'btn-holiday');
