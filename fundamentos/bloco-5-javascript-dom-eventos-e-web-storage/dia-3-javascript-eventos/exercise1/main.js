@@ -63,7 +63,7 @@ input.addEventListener('input', changeTech);
 // 4.1. Que tal redirecionar para seu portfólio?
 
 function toMyGithub() {
-  console.log('works');
+  window.location.href = "https://github.com/Netto-JM";
 }
 
 myWebpage.addEventListener('dblclick', toMyGithub)
