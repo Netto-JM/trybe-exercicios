@@ -1,11 +1,3 @@
-function changeElementColor(element, color) {
-  element.style.color = color;
-}
-
-function changeTextElement(element, text) {
-  element.textContent = text;
-}
-
 const firstLi = document.getElementById('first-li');
 const secondLi = document.getElementById('second-li');
 const thirdLi = document.getElementById('third-li');
@@ -41,7 +33,7 @@ thirdLi.addEventListener('click', addTech);
 function changeTech(event) {
   const text = event.target.value;
   const tech = document.querySelector('.tech');
-  changeTextElement(tech, text);
+  tech.textContent = text;
 }
 
 input.addEventListener('input', changeTech);
@@ -72,7 +64,7 @@ function generateRandomColor() {
 function changeSpotrybefyFontColor(event) {
   const color = generateRandomColor();
   const spotrybefyElement = event.target;
-  changeElementColor(spotrybefyElement, color);
+  spotrybefyElement.style.color = color;
 }
 
 myWebpage.addEventListener('mouseover', changeSpotrybefyFontColor);
