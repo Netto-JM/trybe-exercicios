@@ -70,7 +70,11 @@ const holidayButton = completeElementBuilder('button', 'Feriados', buttonContain
 
 const holidays = document.querySelectorAll('.holiday');
 
+const fridays = document.querySelectorAll('.friday');
+
 let hilightedHolidays = false;
+
+let hilightedFridays = false;
 
 function hilghtHolidays() {
   for (const day of holidays) {
@@ -85,8 +89,17 @@ function hilghtHolidays() {
 
 holidayButton.addEventListener('click', hilghtHolidays);
 
-/* Implemente uma função que crie dinamicamente um botão com o nome "Sexta-feira". Sua função deve receber como parâmetro a string "Sexta-feira".
-Adicione a esse botão o ID "btn-friday";
-Adicione esse botão como filho/filha da tag <div> com classe "buttons-container". */
-
 const friday = completeElementBuilder('button', 'Sexta-feira', buttonContainer, undefined, 'btn-friday');
+
+function hilghtFridays() {
+  for (let index = 0; index < decemberFridays.length; index += 1) {
+    if (hilightedFridays) {
+      fridays[index].textContent = decemberFridays[index];
+    } else {
+      fridays[index].textContent = "LET'S PARTY";
+    }
+  }
+  hilightedFridays = !hilightedFridays;
+}
+
+friday.addEventListener('click', hilghtFridays);
