@@ -26,7 +26,7 @@ function createElementWithText(element, text) {
 }
 
 function completeElementBuilder(element, text, parent, classArray, idName) {
-  const newElement = createElementWithText(element, text)
+  const newElement = createElementWithText(element, text);
   if (classArray) addClassesToElement(newElement, classArray);
   if (idName) addIdToElement(newElement, idName);
   if (parent) parent.appendChild(newElement);
@@ -66,10 +66,28 @@ function toMyGithub() {
   window.location.href = "https://github.com/Netto-JM";
 }
 
-myWebpage.addEventListener('dblclick', toMyGithub)
+myWebpage.addEventListener('dblclick', toMyGithub);
 
 // 5. Crie uma função que, ao passar o mouse sobre 'Meu top 3 do Spotrybefy', altere
 // a cor do mesmo;
+
+function generateRandomColor() {
+  const colorValues = [];
+  for (let index = 0; index < 3; index += 1) {
+    const colorValue = Math.floor(Math.random() * 256);
+    colorValues[index] = colorValue;
+  }
+  const color = `rgb(${colorValues[0]}, ${colorValues[1]}, ${colorValues[2]})`;
+  return color;
+}
+
+function changeSpotrybefyFontColor(event) {
+  const color = generateRandomColor();
+  const spotrybefyElement = event.target;
+  changeElementColor(spotrybefyElement, color);
+}
+
+myWebpage.addEventListener('mouseover', changeSpotrybefyFontColor);
 
 // Segue abaixo um exemplo do uso de event.target:
 
