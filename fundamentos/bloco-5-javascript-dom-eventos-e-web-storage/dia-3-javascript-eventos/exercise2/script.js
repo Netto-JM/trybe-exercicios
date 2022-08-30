@@ -48,15 +48,9 @@ function createDaysOfTheWeek() {
 
 createDaysOfTheWeek();
 
-// Escreva seu código abaixo.
 
-/* Crie um calendário dinamicamente.
-O array decemberDaysList contém os dois últimos dias de novembro e os dias do mês de dezembro. Sua função deve criar dinamicamente cada dia do calendário e os adicionar dentro da tag <ul>.
-Note que os dias 29 e 30 de novembro estão no array, pois representam respectivamente Domingo e Segunda-feira.
-A tag <ul> deve conter o id 'days';
-Os dias devem estar contidos em uma tag <li>, e todos devem ter a classe day. Ex: <li class="day">3</li>
-Os dias 24, 25 e 31 são feriados e, além da classe day, devem conter também a classe holiday. Ex: <li class="day holiday">24</li>
-Os dias 4, 11, 18 e 25 são sextas-feiras. Eles devem conter a classe day e a classe friday. Ex: <li class="day friday">4</li> */
+// Escreva seu código abaixo.
+const buttonContainer = document.querySelector('.buttons-container');
 
 const daysList = document.getElementById('days');
 
@@ -71,3 +65,10 @@ for (const day of decemberDaysList) {
   if (decemberHolidays.includes(day)) decemberDayItem.classList.add('holiday');
   if (decemberFridays.includes(day)) decemberDayItem.classList.add('friday');
 }
+
+/* Implemente uma função que crie dinamicamente um botão com o nome "Feriados".
+Sua função deve receber um parâmetro com a string 'Feriados'
+Adicione a este botão a ID "btn-holiday"
+Adicione este botão como filho/filha da tag <div> com classe "buttons-container" */
+
+completeElementBuilder('button', 'Feriados', buttonContainer, undefined, 'btn-holiday');
