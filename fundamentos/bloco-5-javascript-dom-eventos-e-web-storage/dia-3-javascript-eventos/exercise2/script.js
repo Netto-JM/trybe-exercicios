@@ -68,15 +68,11 @@ for (const day of decemberDaysList) {
 
 const holidayButton = completeElementBuilder('button', 'Feriados', buttonContainer, undefined, 'btn-holiday');
 
-/* Implemente uma função que muda a cor de fundo dos dias que possuem a classe "holiday".
-Adicione ao botão "Feriados" um evento de "click" que altere a cor de fundo dos dias que possuem a classe "holiday"
-👀 É interessante que esse botão possua também a lógica inversa. Ao ser clicado novamente, ele retorna à configuração inicial com a cor "rgb(238,238,238)". */
-
 const holidays = document.querySelectorAll('.holiday');
 
 let hilightedHolidays = false;
 
-function hilghtHolidays(params) {
+function hilghtHolidays() {
   for (const day of holidays) {
     if (hilightedHolidays) {
       day.style.backgroundColor = 'rgb(238,238,238)'
@@ -88,3 +84,9 @@ function hilghtHolidays(params) {
 }
 
 holidayButton.addEventListener('click', hilghtHolidays);
+
+/* Implemente uma função que crie dinamicamente um botão com o nome "Sexta-feira". Sua função deve receber como parâmetro a string "Sexta-feira".
+Adicione a esse botão o ID "btn-friday";
+Adicione esse botão como filho/filha da tag <div> com classe "buttons-container". */
+
+const friday = completeElementBuilder('button', 'Sexta-feira', buttonContainer, undefined, 'btn-friday');
