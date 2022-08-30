@@ -1,3 +1,38 @@
+function changeElementColor(element, color) {
+  element.style.color = color;
+}
+
+function changeTextElement(element, text) {
+  element.textContent = text;
+}
+
+function appendTextNode(element, text) {
+  const textNode = document.createTextNode(text);
+  element.appendChild(textNode);
+}
+
+function addClassesToElement(element, classArray) {
+  element.classList.add(...classArray);
+}
+
+function addIdToElement(element, idName) {
+  element.setAttribute('id', idName);
+}
+
+function createElementWithText(element, text) {
+  const newElement = document.createElement(element);
+  if (text) appendTextNode(newElement, text);
+  return newElement;
+}
+
+function completeElementBuilder(element, text, parent, classArray, idName) {
+  const newElement = createElementWithText(element, text)
+  if (classArray) addClassesToElement(newElement, classArray);
+  if (idName) addIdToElement(newElement, idName);
+  if (parent) parent.appendChild(newElement);
+  return newElement;
+}
+
 const firstLi = document.getElementById('first-li');
 const secondLi = document.getElementById('second-li');
 const thirdLi = document.getElementById('third-li');
@@ -15,9 +50,23 @@ const myWebpage = document.getElementById('my-spotrybefy');
 // 3. Crie uma função que, ao digitar na caixa de texto, altere o texto do elemento
 // com a classe 'tech';
 
+function changeTech(event) {
+  const text = event.target.value;
+  const tech = document.querySelector('.tech');
+  changeTextElement(tech, text);
+}
+
+input.addEventListener('input', changeTech);
+
 // 4. Crie uma função que, ao clicar duas vezes em 'Meu top 3 do Spotrybefy', ele
 // redirecione para alguma página;
 // 4.1. Que tal redirecionar para seu portfólio?
+
+function toMyGithub() {
+  console.log('works');
+}
+
+myWebpage.addEventListener('dblclick', toMyGithub)
 
 // 5. Crie uma função que, ao passar o mouse sobre 'Meu top 3 do Spotrybefy', altere
 // a cor do mesmo;
