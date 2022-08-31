@@ -116,11 +116,32 @@ friday.addEventListener('click', hilghtFridays);
 
 const myTaks = document.querySelector('.my-tasks');
 
-const customtask = completeElementBuilder('span', 'cozinhar', myTaks);
 
-function addTaskDiv(color, task) {
-  const customtask = completeElementBuilder('div', task, myTaks, ['task']);
+function addTaskDiv(color) {
+  const customtask = completeElementBuilder('div', undefined, myTaks, ['task']);
   customtask.style.backgroundColor = color;
 }
 
+completeElementBuilder('span', 'cozinhar', myTaks);
 addTaskDiv('red');
+completeElementBuilder('span', 'programar', myTaks);
+addTaskDiv('green');
+
+const customtasks = document.getElementsByClassName('task');
+
+function selectTask(event) {
+  const clickedTask = event.target;
+  const clickedTaskClasses = clickedTask.classList.toString();
+  const isNotSelectedTask = !clickedTaskClasses.includes('task-selected')
+  clickedTask.classList.toggle('task-selected', isNotSelectedTask)
+}
+
+for (const task of customtasks) {
+  task.addEventListener('click', selectTask)
+}
+
+//eighth exercise completed
+
+/* Implemente uma função que selecione uma tarefa.
+Adicione um evento que ao clicar no elemento com a tag <div> referente à cor da sua tarefa, atribua a esse elemento a classe task selected, ou seja, quando sua tarefa possuir a classe task selected ela estará selecionada.
+Ao clicar novamente no elemento, a sua classe deverá voltar a ser somente task, ou seja, essa tarefa está deixando de ser uma tarefa selecionada. */
