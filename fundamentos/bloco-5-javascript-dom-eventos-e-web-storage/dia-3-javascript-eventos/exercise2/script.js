@@ -1,11 +1,3 @@
-function changeElementColor(element, color) {
-  element.style.color = color;
-}
-
-function changeTextElement(element, text) {
-  element.textContent = text;
-}
-
 function appendTextNode(element, text) {
   const textNode = document.createTextNode(text);
   element.appendChild(textNode);
@@ -26,15 +18,25 @@ function createElementWithText(element, text) {
 }
 
 function completeElementBuilder(element, text, parent, classArray, idName) {
-  const newElement = createElementWithText(element, text)
+  const newElement = createElementWithText(element, text);
   if (classArray) addClassesToElement(newElement, classArray);
   if (idName) addIdToElement(newElement, idName);
   if (parent) parent.appendChild(newElement);
   return newElement;
 }
 
+function generateRandomColor() {
+  const colorValues = [];
+  for (let index = 0; index < 3; index += 1) {
+    const colorValue = Math.floor(Math.random() * 256);
+    colorValues[index] = colorValue;
+  }
+  const color = `rgb(${colorValues[0]}, ${colorValues[1]}, ${colorValues[2]})`;
+  return color;
+}
+
 function createDaysOfTheWeek() {
-  const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado']
+  const weekDays = ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'];
   const weekDaysList = document.querySelector('.week-days');
 
   for (let index = 0; index < weekDays.length; index += 1) {
@@ -61,11 +63,11 @@ const decemberHolidays = [24, 25, 31];
 const decemberFridays = [4, 11, 18, 25];
 
 function zoomInDay(event) {
-  event.target.style.fontSize = '2.5rem'
+  event.target.style.fontSize = '2.5rem';
 }
 
 function zoomOutDay(event) {
-  event.target.style.fontSize = '20px'
+  event.target.style.fontSize = '20px';
 }
 
 for (const day of decemberDaysList) {
@@ -119,8 +121,9 @@ const myTaks = document.querySelector('.my-tasks');
 
 
 function addTaskDiv(color) {
-  const customtask = completeElementBuilder('div', undefined, myTaks, ['task']);
-  customtask.style.backgroundColor = color;
+  const customTask = completeElementBuilder('div', undefined, myTaks, ['task']);
+  customTask.style.backgroundColor = color;
+  customTask.addEventListener('click', selectTask);
 }
 
 completeElementBuilder('span', 'cozinhar', myTaks);
@@ -128,36 +131,46 @@ addTaskDiv('red');
 completeElementBuilder('span', 'programar', myTaks);
 addTaskDiv('green');
 
-const customtasks = document.getElementsByClassName('task');
+const customTasks = document.getElementsByClassName('task');
 
 function selectTask(event) {
   const clickedTask = event.target;
   const clickedTaskClasses = clickedTask.classList.toString();
   const isNotSelectedTask = !clickedTaskClasses.includes('task-selected');
   clickedTask.classList.toggle('task-selected', isNotSelectedTask);
-  for (const task of customtasks) {
+  for (const task of customTasks) {
     if (task !== clickedTask) task.classList.remove('task-selected');
   }
 }
 
-for (const task of customtasks) {
-  task.addEventListener('click', selectTask);
-}
-
 function taskDay(event) {
-  let selectedTaskColor = ''
+  let selectedTaskColor = '';
   const clickedDay = event.target;
   const defaultColor = 'rgb(238,238,238)';
   const selectedTask = document.querySelector('.task-selected');
   if (selectedTask) selectedTaskColor = selectedTask.style.backgroundColor;
   const currentColor = clickedDay.style.backgroundColor;
-  const sameColors = selectedTaskColor === currentColor
+  const sameColors = selectedTaskColor === currentColor;
   if (sameColors) clickedDay.style.backgroundColor = defaultColor;
   else clickedDay.style.backgroundColor = selectedTaskColor;
 }
 
-//ninth exercise completed
+const taskInput = document.getElementById('task-input');
 
-/* Implemente uma função que atribua a cor da tarefa ao dia do calendário.
-Adicione um evento que, ao clicar em um dia do mês no calendário, atribua a esse dia a cor da legenda da sua tarefa selecionada.
-Ao clicar novamente no dia com a cor da legenda, a sua cor deverá voltar à configuração inicial rgb(119,119,119) */
+const buttonAdd = document.getElementById('btn-add');
+
+function addTask() {
+  const taskName = taskInput.value;
+  if (taskName.length === 0) return alert('Campo vazio');
+  completeElementBuilder('span', taskName, myTaks);
+  const randomColor = generateRandomColor();
+  addTaskDiv(randomColor);
+  taskInput.value = '';
+}
+
+function addTaskByEnter(event) {
+  if (event.keyCode === 13) addTask();
+}
+
+buttonAdd.addEventListener('click', addTask);
+taskInput.addEventListener('keydown', addTaskByEnter);
