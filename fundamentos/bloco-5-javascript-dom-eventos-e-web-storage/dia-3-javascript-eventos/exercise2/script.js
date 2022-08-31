@@ -74,6 +74,7 @@ for (const day of decemberDaysList) {
   if (decemberFridays.includes(day)) decemberDayItem.classList.add('friday');
   decemberDayItem.addEventListener('mouseover', zoomInDay);
   decemberDayItem.addEventListener('mouseout', zoomOutDay);
+  decemberDayItem.addEventListener('click', taskDay);
 }
 
 const holidayButton = completeElementBuilder('button', 'Feriados', buttonContainer, undefined, 'btn-holiday');
@@ -89,9 +90,9 @@ let hilightedFridays = false;
 function hilghtHolidays() {
   for (const day of holidays) {
     if (hilightedHolidays) {
-      day.style.backgroundColor = 'rgb(238,238,238)'
+      day.style.backgroundColor = 'rgb(238,238,238)';
     } else {
-      day.style.backgroundColor = 'orange'
+      day.style.backgroundColor = 'orange';
     }
   }
   hilightedHolidays = !hilightedHolidays;
@@ -132,16 +133,31 @@ const customtasks = document.getElementsByClassName('task');
 function selectTask(event) {
   const clickedTask = event.target;
   const clickedTaskClasses = clickedTask.classList.toString();
-  const isNotSelectedTask = !clickedTaskClasses.includes('task-selected')
-  clickedTask.classList.toggle('task-selected', isNotSelectedTask)
+  const isNotSelectedTask = !clickedTaskClasses.includes('task-selected');
+  clickedTask.classList.toggle('task-selected', isNotSelectedTask);
+  for (const task of customtasks) {
+    if (task !== clickedTask) task.classList.remove('task-selected');
+  }
 }
 
 for (const task of customtasks) {
-  task.addEventListener('click', selectTask)
+  task.addEventListener('click', selectTask);
 }
 
-//eighth exercise completed
+function taskDay(event) {
+  let selectedTaskColor = ''
+  const clickedDay = event.target;
+  const defaultColor = 'rgb(238,238,238)';
+  const selectedTask = document.querySelector('.task-selected');
+  if (selectedTask) selectedTaskColor = selectedTask.style.backgroundColor;
+  const currentColor = clickedDay.style.backgroundColor;
+  const sameColors = selectedTaskColor === currentColor
+  if (sameColors) clickedDay.style.backgroundColor = defaultColor;
+  else clickedDay.style.backgroundColor = selectedTaskColor;
+}
 
-/* Implemente uma função que selecione uma tarefa.
-Adicione um evento que ao clicar no elemento com a tag <div> referente à cor da sua tarefa, atribua a esse elemento a classe task selected, ou seja, quando sua tarefa possuir a classe task selected ela estará selecionada.
-Ao clicar novamente no elemento, a sua classe deverá voltar a ser somente task, ou seja, essa tarefa está deixando de ser uma tarefa selecionada. */
+//ninth exercise completed
+
+/* Implemente uma função que atribua a cor da tarefa ao dia do calendário.
+Adicione um evento que, ao clicar em um dia do mês no calendário, atribua a esse dia a cor da legenda da sua tarefa selecionada.
+Ao clicar novamente no dia com a cor da legenda, a sua cor deverá voltar à configuração inicial rgb(119,119,119) */
