@@ -1,11 +1,3 @@
-function changeElementColor(element, color) {
-  element.style.color = color;
-}
-
-function changeTextElement(element, text) {
-  element.textContent = text;
-}
-
 function appendTextNode(element, text) {
   const textNode = document.createTextNode(text);
   element.appendChild(textNode);
@@ -57,4 +49,3 @@ sectionRight.style.marginRight = 'auto';
 main.style.backgroundColor = 'green';
 ul.removeChild(ul.lastElementChild);
 ul.removeChild(ul.lastElementChild);
-
