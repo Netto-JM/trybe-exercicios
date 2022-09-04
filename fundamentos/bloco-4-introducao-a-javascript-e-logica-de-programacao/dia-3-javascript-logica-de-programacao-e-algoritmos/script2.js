@@ -144,7 +144,7 @@ function drawTriangleRectangleRight(number) {
   const errorMessage = "Invalid number, please enter a positive number";
   if (!isPositiveNumber(number)) return errorMessage;
   let triangle = '';
-  let spacesToPrint = 4;
+  let spacesToPrint = number - 1;
   for (let outerIndex = 0; outerIndex < number; outerIndex += 1) {
     let row = ''
     let spacesCounter = spacesToPrint;
