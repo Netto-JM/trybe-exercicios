@@ -135,8 +135,7 @@ const customTasks = document.getElementsByClassName('task');
 
 function selectTask(event) {
   const clickedTask = event.target;
-  const clickedTaskClasses = clickedTask.classList.toString();
-  const isNotSelectedTask = !clickedTaskClasses.includes('task-selected');
+  const isNotSelectedTask = !clickedTask.classList.contains('task-selected');
   clickedTask.classList.toggle('task-selected', isNotSelectedTask);
   for (const task of customTasks) {
     if (task !== clickedTask) task.classList.remove('task-selected');
