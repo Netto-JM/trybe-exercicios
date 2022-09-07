@@ -14,10 +14,14 @@
   <main>
     <form action="GET">
       <fieldset id="user-info">
-        <label for="full=name">Nome: </label>
-        <input type="text" id="full=name" minlength="10" maxlength="40">
+        <label for="name">Nome: </label>
+        <input type="text" id="name" name="name" minlength="10" maxlength="40"><br>
         <label for="email" >Email: </label>
-        <input type="email" id="email" minlength="10" maxlength="50">
+        <input type="email" id="email" name="email" minlength="10" maxlength="50"><br>
+        <input type="radio" name="destination" id="vc" value="vc"><label for="vc">Vancouver</label>
+        <input type="radio" name="destination" id="nyc" value="nyc"><label for="nyc">New York City</label>
+        <input type="radio" name="destination" id="ld" value="ld"><label for="ld">London</label>
+        <input type="radio" name="destination" id="pr" value="pr"><label for="pr">Paris</label>
       </fieldset>
     </form>
   </main>
