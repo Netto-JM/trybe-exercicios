@@ -11,7 +11,7 @@ html {
   width: 400px;
 }
 
-#name, #email, #date, #sub-nl, #consent-img {
+#name, #email, #date, #sub-nl, #consent-img, #submit-button, #reset-button {
   display: inline-block;
   margin: 5px;
 }
