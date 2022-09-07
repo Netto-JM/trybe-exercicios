@@ -7,6 +7,10 @@ html {
   box-sizing: inherit;
 }
 
+#user-info {
+  width: 400px;
+}
+
 #name, #email {
   display: inline-block;
   margin: 5px;
