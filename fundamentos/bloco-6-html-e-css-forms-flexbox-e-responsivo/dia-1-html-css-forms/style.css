@@ -1,4 +1,17 @@
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+  color: gray;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
 #name, #email {
   display: inline-block;
   margin: 5px;
+}
+
+#motive {
+  resize: none;
 }
