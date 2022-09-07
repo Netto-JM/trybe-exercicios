@@ -11,7 +11,7 @@ html {
   width: 400px;
 }
 
-#name, #email {
+#name, #email, #date, #sub-nl, #consent-img {
   display: inline-block;
   margin: 5px;
 }
