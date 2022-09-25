@@ -39,3 +39,23 @@ function isWinner(bettingNumber, winningNumber) {
 const myBet = 3;
 
 console.log(checkLottery(myBet, isWinner));
+
+
+const RIGHT_ANSWERS = ['A', 'C', 'B', 'D', 'A', 'A', 'D', 'A', 'D', 'C'];
+const STUDENT_ANSWERS = ['A', 'N.A', 'B', 'D', 'A', 'C', 'N.A', 'A', 'D', 'B'];
+
+function checkAnswers(rightAnswers, studentAnswers, callback) {
+  const studentScore = callback(rightAnswers, studentAnswers);
+  return studentScore;
+}
+
+function getScore(rightAnswers, studentAnswers) {
+  let score = 0;
+  for (let index = 0; index < rightAnswers.length; index += 1) {
+    if (studentAnswers[index] === 'N.A') continue;
+    score += (rightAnswers[index] === studentAnswers[index]) ? 1 : -0.5;
+  }
+  return score;
+}
+
+console.log(checkAnswers(RIGHT_ANSWERS, STUDENT_ANSWERS, getScore));
