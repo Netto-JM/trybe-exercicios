@@ -1,10 +1,3 @@
-/* Crie uma função que retorne um objeto no formato {
-  nomeCompleto,
-  email
-}
-representando uma nova pessoa contratada.Passe sua função como parâmetro da HOF newEmployees para criar cada pessoa contratada em seu respectivo id.A sua função deve receber como parâmetro o nome completo da pessoa funcionária e, a partir dele, gerar automaticamente um email no formato nome_da_pessoa @trybe.com.
- */
-
 const newEmployees = (callback1, callback2) => {
   const employees = {
     id1: callback1('Pedro Guerra', callback2),
@@ -31,3 +24,18 @@ function generateEmail(name) {
 const employyList = newEmployees(createPerson, generateEmail)
 
 console.log(employyList);
+
+
+function checkLottery(bettingNumber, callback) {
+  const winningNumber = Math.floor(Math.random() * 5 + 1)
+  if (callback(bettingNumber, winningNumber)) return 'Parabéns você ganhou';
+  return 'Tente novamente';
+}
+
+function isWinner(bettingNumber, winningNumber) {
+  return bettingNumber === winningNumber;
+}
+
+const myBet = 3;
+
+console.log(checkLottery(myBet, isWinner));
