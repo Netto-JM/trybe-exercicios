@@ -87,13 +87,17 @@ const battleMembers = {
   dragon
 };
 
-/* 
-Crie uma função que retorna o dano do dragão.
-O dano será um número aleatório entre 15 (dano mínimo) e o valor do atributo strength (dano máximo). */
-
 function dragonDamage(dragon) {
   const minDamage = 15
-  const remainingDamage = dragon.strength - 15;
+  const remainingDamage = dragon.strength - minDamage;
   const totalDamage = minDamage + Math.floor(Math.random() * remainingDamage) + 1;
   return totalDamage;
 }
+
+function warriorDamage(warrior) {
+  const minDamage = warrior.strength
+  const remainingDamage = minDamage * warrior.weaponDmg - minDamage;
+  const totalDamage = minDamage + Math.floor(Math.random() * remainingDamage) + 1;
+  return totalDamage;
+}
+
