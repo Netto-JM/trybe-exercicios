@@ -59,3 +59,41 @@ function getScore(rightAnswers, studentAnswers) {
 }
 
 console.log(checkAnswers(RIGHT_ANSWERS, STUDENT_ANSWERS, getScore));
+
+
+const mage = {
+  healthPoints: 130,
+  intelligence: 45,
+  mana: 125,
+  damage: undefined,
+};
+
+const warrior = {
+  healthPoints: 200,
+  strength: 30,
+  weaponDmg: 2,
+  damage: undefined,
+};
+
+const dragon = {
+  healthPoints: 350,
+  strength: 50,
+  damage: undefined,
+};
+
+const battleMembers = {
+  mage,
+  warrior,
+  dragon
+};
+
+/* 
+Crie uma função que retorna o dano do dragão.
+O dano será um número aleatório entre 15 (dano mínimo) e o valor do atributo strength (dano máximo). */
+
+function dragonDamage(dragon) {
+  const minDamage = 15
+  const remainingDamage = dragon.strength - 15;
+  const totalDamage = minDamage + Math.floor(Math.random() * remainingDamage) + 1;
+  return totalDamage;
+}
