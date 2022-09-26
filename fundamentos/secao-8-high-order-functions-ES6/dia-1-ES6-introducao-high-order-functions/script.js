@@ -87,17 +87,21 @@ const battleMembers = {
   dragon,
 };
 
+function getDamage(minDamage, remainingDamage) {
+  return minDamage + Math.floor(Math.random() * remainingDamage) + 1;
+}
+
 function dragonDamage(dragon) {
   const minDamage = 15;
   const remainingDamage = dragon.strength - minDamage;
-  const totalDamage = minDamage + Math.floor(Math.random() * remainingDamage) + 1;
+  const totalDamage = getDamage(minDamage, remainingDamage);
   return totalDamage;
 }
 
 function warriorDamage(warrior) {
   const minDamage = warrior.strength;
   const remainingDamage = minDamage * warrior.weaponDmg - minDamage;
-  const totalDamage = minDamage + Math.floor(Math.random() * remainingDamage) + 1;
+  const totalDamage = getDamage(minDamage, remainingDamage);
   return totalDamage;
 }
 
@@ -110,7 +114,7 @@ function mageDamage(mage) {
   }
   const minDamage = mage.intelligence;
   const remainingDamage = minDamage * 2 - minDamage;
-  const totalDamage = minDamage + Math.floor(Math.random() * remainingDamage) + 1;
+  const totalDamage = getDamage(minDamage, remainingDamage);
   return {
     damage: totalDamage,
     spentMana: 15,
