@@ -134,4 +134,10 @@ const gameActions = {
     mage.damage = mageDamage;
     mage.mana -= mageMove.spentMana;
   },
+  dragonTurn(callback) {
+    const dragonDamage = callback(dragon);
+    warrior.healthPoints -= dragonDamage;
+    mage.healthPoints -= dragonDamage;
+    dragon.damage = dragonDamage;
+  },
 };
