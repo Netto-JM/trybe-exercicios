@@ -126,6 +126,7 @@ const gameActions = {
     const warriorDamage = callback(warrior);
     dragon.healthPoints -= warriorDamage;
     warrior.damage = warriorDamage;
+    this.turnResult();
   },
   mageTurn(callback) {
     const mageMove = callback(mage)
@@ -133,11 +134,20 @@ const gameActions = {
     dragon.healthPoints -= mageDamage;
     mage.damage = mageDamage;
     mage.mana -= mageMove.spentMana;
+    this.turnResult();
   },
   dragonTurn(callback) {
     const dragonDamage = callback(dragon);
     warrior.healthPoints -= dragonDamage;
     mage.healthPoints -= dragonDamage;
     dragon.damage = dragonDamage;
+    this.turnResult();
   },
+  turnResult() {
+    console.log('Characters attributes at the end of the turn:');
+    Object.entries(battleMembers).forEach((battleMember) => {
+      console.log(battleMember[0]);
+      console.log(battleMember[1]);
+    });
+  }
 };
