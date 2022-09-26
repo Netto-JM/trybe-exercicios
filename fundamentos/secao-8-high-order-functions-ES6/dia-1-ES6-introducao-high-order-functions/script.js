@@ -91,21 +91,21 @@ function getDamage(minDamage, remainingDamage) {
   return minDamage + Math.floor(Math.random() * remainingDamage) + 1;
 }
 
-function dragonDamage(dragon) {
+function getDragonDamage(dragon) {
   const minDamage = 15;
   const remainingDamage = dragon.strength - minDamage;
   const totalDamage = getDamage(minDamage, remainingDamage);
   return totalDamage;
 }
 
-function warriorDamage(warrior) {
+function getWarriorDamage(warrior) {
   const minDamage = warrior.strength;
   const remainingDamage = minDamage * warrior.weaponDmg - minDamage;
   const totalDamage = getDamage(minDamage, remainingDamage);
   return totalDamage;
 }
 
-function mageDamage(mage) {
+function getMageDamage(mage) {
   if (mage.mana < 15) {
     return {
       damage: 'Não possui mana suficiente',
@@ -120,3 +120,18 @@ function mageDamage(mage) {
     spentMana: 15,
   };
 }
+
+const gameActions = {
+  warriorTurn(callback) {
+    const warriorDamage = callback(warrior);
+    dragon.healthPoints -= warriorDamage;
+    warrior.damage = warriorDamage;
+  },
+  mageTurn(callback) {
+    const mageMove = callback(mage)
+    const mageDamage = (typeof mageMove.damage === 'number') ? mageMove.damage : 0;
+    dragon.healthPoints -= mageDamage;
+    mage.damage = mageDamage;
+    mage.mana -= mageMove.spentMana;
+  },
+};
